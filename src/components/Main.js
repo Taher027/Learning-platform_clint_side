@@ -1,9 +1,11 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import Header from './Header';
 
 const Main = () => {
     return (
         <div>
+            <Header></Header>
             <Container>
                 <Row>
                     <Col lg='4'> <h2>This left side</h2> </Col>
