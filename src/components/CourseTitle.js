@@ -14,21 +14,21 @@ const CourseTitle = () => {
     }, [])
 
     return (
-        <div>
-            <h4>All Courses {course.length}</h4>
-            <div>
+        <div className="mt-5">
+            <h4 className='text-success'>All Courses</h4>
+            <div >
                 {
                     course.map(c => <p key={c.id}>
 
-                        <Link to={`course/${c.id}`}>{c.title}</Link>
+                        <Link className='text-success' to={`course/${c.id}`}>{c.title}</Link>
 
                     </p>)
                 }
             </div>
             <div>
                 <ButtonGroup vertical>
-                    <Button variant='outline-primary'> <FaGoogle></FaGoogle> Login with Google</Button>
-                    <Button variant='outline-dark'><FaGithub></FaGithub> Login with Github</Button>
+                    <Button className='text-success' variant='outline-primary'> <FaGoogle></FaGoogle> Login with Google</Button>
+                    <Button className='text-success' variant='outline-dark'><FaGithub></FaGithub> Login with Github</Button>
                 </ButtonGroup>
             </div>
         </div>

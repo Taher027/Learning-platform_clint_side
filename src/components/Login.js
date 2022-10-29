@@ -1,9 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const Login = () => {
     return (
-        <div>
-            <h2>log in</h2>
+        <div className='container'>
+            <form>
+
+                <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+
+                <div className="form-floating">
+                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div className="form-floating">
+                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+                    <label for="floatingPassword">Password</label>
+                </div>
+
+                <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                
+            </form>
+            <div className='text-center'>
+                <button className='fs-3 m-2'>
+                    <FaGoogle></FaGoogle>
+                </button>
+                <button className='fs-3 m-2'>
+                    <FaGithub></FaGithub>
+                </button>
+            </div>
+
+            <Link to='/register'>Register</Link>
+
         </div>
     );
 };
