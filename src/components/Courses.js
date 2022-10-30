@@ -6,8 +6,8 @@ const Courses = () => {
     const loaderData = useLoaderData();
     return (
         <div>
-           <div className="container d-flex">
-      <div className="col-5">
+           <div className="container d-lg-flex">
+      <div className="text-center" sm={12} lg={5} >
         {loaderData.map(e => {
           return (
             <div className="m-2" key={e.id}>
@@ -20,7 +20,7 @@ const Courses = () => {
           );
         })}
       </div>
-      <div className="col-7">
+      <div className="text-center" sm={12} lg={7}>
         <div>
           {loaderData.map(e => {
             return <CourseInfo value={e} key={e.id}></CourseInfo>;

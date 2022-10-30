@@ -3,15 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { getAuth } from "firebase/auth";
 import app from '../firebase/firebase.config'
-import { useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 
 const Login = () => {
-    const auth = getAuth(app);
    
-    const {providerLogin, providerLogin2, user, signIn} = useContext(AuthContext)
+    const {providerLogin, providerLogin2, signIn} = useContext(AuthContext)
 
-    console.log(user)
+   
 
     const navigate = useNavigate();
     const location = useLocation();

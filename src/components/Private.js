@@ -9,7 +9,7 @@ const Private = () => {
             <h1 className="text-center text-info">
         Congratulation!Yout get access {title}
       </h1>
-      <p>{description}</p>
+      <p className="p-5">{description}</p>
       
         </div>
     );

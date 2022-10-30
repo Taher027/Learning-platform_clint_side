@@ -5,6 +5,9 @@ import { AuthContext } from '../context/AuthProvider';
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+
+
+
     const handleForm = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -32,11 +35,8 @@ const Register = () => {
         }
 
         updateUserProfile(profile)
-            .then(
-              
-             )
-            .catch(
-            );
+         .then(() => { console.log('thne') })
+         .catch(error => console.log('catch'));
     }
     return (
         <div className='container'>

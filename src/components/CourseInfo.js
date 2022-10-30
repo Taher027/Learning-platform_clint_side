@@ -16,7 +16,7 @@ const CourseInfo = (props) => {
         </div>
         <div className="card-body text-info">
           <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
+          <p className="card-text ">{description}</p>
           <span>Duration:{duration}</span>
         </div>
       </div>

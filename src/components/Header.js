@@ -32,15 +32,23 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to="/courses" className='text-primary'>Courses</Link>
+                    <Link to="/" className='text-primary'>DevSchool</Link>
+                        <Link to="/courses" className='text-primary mx-2'>Courses</Link>
                         <Link to="/faq" className='text-primary'>FAQ</Link>
                         <Link to="/blog" className='text-primary'>Blog</Link>
                     </Nav>
                     <Nav>
+                   
                     {
-                    user?  <Link className='text-primary' onClick={logoutHandle}>Logout</Link>:<Link to="/login" className='text-primary'>Login</Link>
+                    user? <>
+                     <span>
+                      <img src={user?.photoURL} title={user?.displayName} alt={user?.displayName} style={{height:'20px',width:'20px',borderRadius:'50%'}}>
+                      </img>
+                      <Link className='text-primary' onClick={logoutHandle}>Logout</Link>
+                    </span>
+                    </> :<Link to="/login" className='text-primary'>Login</Link>
                     }
-        <div class="form-check form-switch">
+        <div class="form-check form-switch ms-2">
            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={mode}/>
        </div>
                     </Nav>

@@ -1,14 +1,24 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import { FaDownload} from "react-icons/fa";
 
 const Course = () => {
     const loaderData = useLoaderData();
-  const { title, description, img, duration , id } = loaderData;
+  const { title, description, img, duration , id } = loaderData; 
+  
     return (
         <div>
           <div className="col-6 mx-auto text-center text-info border mt-3">
       <div className="d-flex justify-content-around mt-2">
+        <button>
+        <FaDownload></FaDownload>
+        </button>
         
+    
+
+  
+
+
         <h2>{title}</h2>
       </div>
       <img src={img} alt={title} style={{ height: '100px', width: '100px' }} />
