@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 const Register = () => {
-    const auth = getAuth(app);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleForm = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -9,17 +12,31 @@ const Register = () => {
         const photoURL = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log(user)
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage)
-            });
+       
+        createUser(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+            handleUpdateUserProfile(name, photoURL);
+            navigate('/');
+        })
+        .catch(e => {
+          alert('something wrong')
+        });
+    }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+
+        updateUserProfile(profile)
+            .then(
+              
+             )
+            .catch(
+            );
     }
     return (
         <div className='container'>
