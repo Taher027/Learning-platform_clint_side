@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import app from '../firebase/firebase.config'
 import { useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
@@ -9,7 +9,7 @@ import { AuthContext } from '../context/AuthProvider';
 const Login = () => {
     const auth = getAuth(app);
    
-    const {providerLogin, providerLogin2, logOut,user,setUser} = useContext(AuthContext)
+    const {providerLogin, providerLogin2, user, signIn} = useContext(AuthContext)
 
     console.log(user)
 
@@ -20,11 +20,9 @@ const Login = () => {
    
     const handleForm = (event) => {
         event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-
-        signInWithEmailAndPassword(auth, email, password)
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+            signIn(email,password)
             .then((userCredential) => {
                 // Signed in 
                 navigate(from, {replace: true});

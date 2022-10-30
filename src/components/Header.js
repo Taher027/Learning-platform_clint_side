@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -12,7 +12,17 @@ const Header = () => {
    const logoutHandle = ()=>{
     logOut();
    }
-    console.log(user)
+   const [theme, setTheme] = useState('light');
+  const mode = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light" >
             <Container >
@@ -30,9 +40,9 @@ const Header = () => {
                     {
                     user?  <Link className='text-primary' onClick={logoutHandle}>Logout</Link>:<Link to="/login" className='text-primary'>Login</Link>
                     }
-                        <Link eventKey={2} to="/memes" className='text-primary'>
-                          Dark theme
-                        </Link>
+        <div class="form-check form-switch">
+           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={mode}/>
+       </div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
