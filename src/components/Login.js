@@ -1,23 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config'
 import { useState } from 'react';
+import { AuthContext } from '../context/AuthProvider';
 
 const Login = () => {
     const auth = getAuth(app);
-    const [user,setUser] = useState([]);
+   
+    const {providerLogin, providerLogin2, logOut,user,setUser} = useContext(AuthContext)
 
+    console.log(user)
 
-    const logout = ()=> {
-        signOut(auth)
-        .then(() => {
-            console.log('sing out')
-          }).catch((error) => {
-            alert('sing out failed')
-          });
-    }
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+   
     const handleForm = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -27,28 +27,38 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
-                console.log(user)
-                setUser(user)
+                navigate(from, {replace: true});
+               
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                alert(errorMessage)
             });
         
 
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                  // User is signed in, see docs for a list of available properties
-                  // https://firebase.google.com/docs/reference/js/firebase.User
-                  const uid = user.uid;
-                  // ...
-                } else {
-                  // User is signed out
-                  // ...
-                }
-              });
+           
+    } 
+    const handleGoogle = ()=> {
+        providerLogin()
+        .then( ()=> {
+            navigate(from, {replace: true});
+        } )
+        .catch( (error)=> {
+            const errorMessage = error.message;
+            alert(errorMessage)
+
+        } )
+    }
+    const handleGithub = ()=> {
+        providerLogin2()
+        .then( ()=> {
+            navigate(from, {replace: true});
+        } )
+        .catch( (error)=> {
+            const errorMessage = error.message;
+            alert(errorMessage)
+
+        } )
     }
     return (
         <div className='container'>
@@ -64,17 +74,14 @@ const Login = () => {
                     <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required name='password'/>
                     <label for="floatingPassword">Password</label>
                 </div>
-                {
-                    user?  <button className="w-100 btn btn-lg btn-primary" type="submit">Log out</button> :  <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-                }
-               
+               <button className="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
 
             </form>
             <div className='text-center'>
-                <button className='fs-3 m-2'>
+                <button className='fs-3 m-2' onClick={handleGoogle}>
                     <FaGoogle></FaGoogle>
                 </button>
-                <button className='fs-3 m-2'>
+                <button className='fs-3 m-2' onClick={handleGithub}>
                     <FaGithub></FaGithub>
                 </button>
             </div>
