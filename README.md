@@ -1,9 +1,9 @@
-*The website name is : DevSchool
+* The website name is : DevSchool
 
 * live site link: https://dev-school-19dd8.web.app/
 
-*It is a secure educational website 
-*People can learning program from this site
+* It is a secure educational website 
+* People can learning program from this site
 * this site includes firebase authentications .
 * user create a profile and login with their authentic user email ans pass and also with google or github profile.
 
